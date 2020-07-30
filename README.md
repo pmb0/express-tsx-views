@@ -1,5 +1,5 @@
 <div align="center">
-  <p>Server side rendering of JSX/TSX for your express application</p>
+  <p>Server-side JSX/TSX rendering for your express or NestJS application</p>
 </div>
 
 [![npm version](https://badge.fury.io/js/express-tsx-views.svg)](https://www.npmjs.com/package/express-tsx-views)
