@@ -16,6 +16,7 @@ For this to work, the templates are imported dynamically during rendering. And f
 
 - [Setup](#setup)
 - [Express app](#express-app)
+- [NestJS](#nestjs)
 - [License](#license)
 
 # Setup
@@ -78,6 +79,34 @@ export default class MyView extends Component<Props> {
       <div>Hello from React! Title: {this.props.title}</div>
     )
   }
+}
+```
+
+# NestJS
+
+express-tsx-views can also be used in [NestJS](https://nestjs.com/). For this purpose the template engine must be made available in your `main.ts`:
+
+```ts
+import { setupReactViews } from 'express-tsx-views'
+
+async function bootstrap() {
+  // ...
+  setupReactViews(app, {
+    viewsDirectory: resolve(__dirname, '../views'),
+  })
+}
+// ...
+```
+
+Example controller:
+
+```ts
+import { Props } from './views/my-view'
+
+@Get('/my-route')
+@Render('my-view')
+getMyRoute(): Props {
+  return { title: "Hello from NestJS", lang: "de" }
 }
 ```
 
