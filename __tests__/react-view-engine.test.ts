@@ -1,6 +1,7 @@
+import { resolve } from 'path'
 import request from 'supertest'
+import { setupReactViews } from '..'
 import { app } from '../example/app'
-import { reactViews } from '..'
 
 describe('react-view-engine', () => {
   test('Rendering', async () => {
@@ -46,7 +47,11 @@ describe('react-view-engine', () => {
   })
 
   it('without DOCTYPE', async () => {
-    app.locals.reactViewOptions.doctype = ''
+    setupReactViews(app, {
+      viewsDirectory: resolve(__dirname, '../example/views'),
+      prettify: true,
+      doctype: '',
+    })
 
     const response = await request(app).get('/').expect(200)
     expect(response.text).toMatchInlineSnapshot(`

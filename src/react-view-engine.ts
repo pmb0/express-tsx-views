@@ -1,4 +1,3 @@
-import { Express } from 'express'
 import prettier from 'prettier'
 import React from 'react'
 import * as ReactDOM from 'react-dom/server'
@@ -9,12 +8,25 @@ export interface ReactViewsOptions {
   viewsDirectory: string
 }
 
-export function setupReactViews(app: Express, options: ReactViewsOptions) {
+export interface ExpressLikeApp {
+  set(setting: string, val: any): this
+  engine(
+    ext: string,
+    fn: (
+      path: string,
+      options: object,
+      callback: (e: any, rendered?: string) => void
+    ) => void
+  ): this
+}
+
+export function setupReactViews(
+  app: ExpressLikeApp,
+  options: ReactViewsOptions
+) {
   if (!options.viewsDirectory) {
     throw new Error('viewsDirectory missing')
   }
-
-  app.locals.reactViewOptions = options
 
   const extension = __filename.endsWith('.js') ? 'js' : 'tsx'
 
@@ -23,13 +35,13 @@ export function setupReactViews(app: Express, options: ReactViewsOptions) {
   app.set('views', options.viewsDirectory)
 }
 
-export function reactViews(options: ReactViewsOptions) {
+export function reactViews(reactViewOptions: ReactViewsOptions) {
   return async function renderFile(
     filename: string,
     options: { [name: string]: any },
     next: any
   ): Promise<void> {
-    const { settings, reactViewOptions, _locals, cache, ...vars } = options
+    const { settings, _locals, cache, ...vars } = options
 
     try {
       const Component = (await import(filename)).default
