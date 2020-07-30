@@ -1,0 +1,16 @@
+docs
+__mocks__
+__tests__
+.*
+*.old
+*.log
+*.tgz
+**/*.test.js
+**/*.ts
+**/example
+coverage
+renovate.json
+*.config.js
+node_modules
+tsconfig*.json
+!dist/**/*

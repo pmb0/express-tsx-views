@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "target": "es2019"
+  },
+  "include": [
+    "src/**/*",
+    "__tests__/**/*",
+    "example/**/*",
+    "__mocks__/**/*",
+    "index.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

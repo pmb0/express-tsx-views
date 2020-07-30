@@ -1,0 +1,68 @@
+import request from 'supertest'
+import { app } from '../example/app'
+import { reactViews } from '..'
+
+describe('react-view-engine', () => {
+  test('Rendering', async () => {
+    const response = await request(app).get('/').expect(200)
+
+    expect(response.text).toMatchInlineSnapshot(`
+      "<!DOCTYPE html>
+      <html lang=\\"de\\">
+        <head>
+          <meta charset=\\"UTF-8\\" />
+          <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\" />
+          <title>Test</title>
+        </head>
+        <body>
+          <h1>Test</h1>
+          <p>Some component:</p>
+          Hello from MyComponent! Provided prop: foo
+        </body>
+      </html>
+      "
+    `)
+  })
+
+  it('Rendering with locals', async () => {
+    const response = await request(app).get('/with-locals').expect(200)
+
+    expect(response.text).toMatchInlineSnapshot(`
+      "<!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset=\\"UTF-8\\" />
+          <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\" />
+          <title>from locals</title>
+        </head>
+        <body>
+          <h1>from locals</h1>
+          <p>Some component:</p>
+          Hello from MyComponent! Provided prop: foo
+        </body>
+      </html>
+      "
+    `)
+  })
+
+  it('without DOCTYPE', async () => {
+    app.locals.reactViewOptions.doctype = ''
+
+    const response = await request(app).get('/').expect(200)
+    expect(response.text).toMatchInlineSnapshot(`
+      "<html lang=\\"de\\">
+        <head>
+          <meta charset=\\"UTF-8\\" />
+          <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\" />
+          <title>Test</title>
+        </head>
+        <body>
+          <h1>Test</h1>
+          <p>Some component:</p>
+          Hello from MyComponent! Provided prop: foo
+        </body>
+      </html>
+      "
+    `)
+  })
+})
