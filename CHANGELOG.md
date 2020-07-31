@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/pmb0/express-tsx-views/compare/v1.1.0...v1.1.1) (2020-07-31)
+
+
+### Bug Fixes
+
+* use strong types ([8c609df](https://github.com/pmb0/express-tsx-views/commit/8c609df29b112cb71bb19c8dcc6fe78ca141ab9c))
+
 # [1.1.0](https://github.com/pmb0/express-tsx-views/compare/v1.0.1...v1.1.0) (2020-07-30)
 
 
