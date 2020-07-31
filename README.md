@@ -15,7 +15,7 @@ For this to work, the templates are imported dynamically during rendering. And f
 # Highlights <!-- omit in toc -->
 
 - Fast, since the JSX/TSX files do not have to be transpiled on-the-fly with every request
-- Works with compiled files (`.js`) and uncompiled files (`.tsx`)
+- Works with compiled files (`.js` / `node`) and uncompiled files (`.tsx` / `ts-node`, `ts-jest`, ...)
 
 # Table of contents <!-- omit in toc -->
 
