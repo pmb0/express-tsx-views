@@ -37,6 +37,7 @@ module.exports = {
       files: ['*.test.ts', '*.js', '__tests__/**/*.ts'],
       rules: {
         'toplevel/no-toplevel-side-effect': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
       },
     },
   ],

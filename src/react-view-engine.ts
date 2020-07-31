@@ -23,11 +23,10 @@ export function setupReactViews(
 
   const extension = __filename.endsWith('.js') ? 'js' : 'tsx'
 
-  app
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    .engine(extension, reactViews(options))
-    .set('view engine', extension)
-    .set('views', options.viewsDirectory)
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  app.engine(extension, reactViews(options))
+  app.set('view engine', extension)
+  app.set('views', options.viewsDirectory)
 }
 
 export function reactViews(reactViewOptions: ReactViewsOptions) {
