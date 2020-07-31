@@ -116,7 +116,7 @@ import { setupReactViews } from 'express-tsx-views'
 
 async function bootstrap() {
   // ...
-  setupReactViews(app, {
+  setupReactViews(app.getHttpAdapter().getInstance(), {
     viewsDirectory: resolve(__dirname, '../views'),
   })
 }

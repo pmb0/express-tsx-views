@@ -11,12 +11,12 @@ setupReactViews(app, {
   prettify: true,
 })
 
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
+app.get('/', (req: Request, res: Response, _next: NextFunction) => {
   const data: Props = { title: 'Test', lang: 'de' }
   res.render('my-view', data)
 })
 
-app.get('/with-locals', (req: Request, res: Response, next: NextFunction) => {
+app.get('/with-locals', (req: Request, res: Response, _next: NextFunction) => {
   res.locals.title = 'from locals'
   res.render('my-view')
 })

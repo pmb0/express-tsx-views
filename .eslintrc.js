@@ -15,7 +15,23 @@ module.exports = {
         project: 'tsconfig.json',
       },
       files: ['*.ts', '*.tsx'],
-      extends: ['prettier/@typescript-eslint'],
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:react/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'prettier/@typescript-eslint',
+      ],
+      settings: {
+        react: {
+          version: 'detect',
+        },
+      },
+      rules: {
+        '@typescript-eslint/no-unused-vars': [
+          'warn',
+          { argsIgnorePattern: '^_' },
+        ],
+      },
     },
     {
       files: ['*.test.ts', '*.js', '__tests__/**/*.ts'],
