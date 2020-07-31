@@ -12,20 +12,25 @@ With this template engine, TSX files can be rendered server-side by your Express
 
 For this to work, the templates are imported dynamically during rendering. And for this **you have to provide a default export in your main TSX files**. (Embeddable TSX components don't have to use a default export). 
 
+# Highlights <!-- omit in toc -->
+
+- Fast, since the JSX/TSX files do not have to be transpiled on-the-fly with every request
+- Works with compiled files (`.js`) and uncompiled files (`.tsx`)
+
 # Table of contents <!-- omit in toc -->
 
-- [Setup](#setup)
-- [Express app](#express-app)
-- [NestJS](#nestjs)
+- [Usage](#usage)
+  - [Express](#express)
+  - [NestJS](#nestjs)
 - [License](#license)
 
-# Setup
+# Usage
 
 ```sh
 $ npm install --save express-tsx-views
 ```
 
-Necessary configuration in your `tsconfig.json`:
+You have to set the `jsx` setting in your TypeScript configuration `tsconfig.json` to the value `react`:
 
 ```json
 {
@@ -35,7 +40,27 @@ Necessary configuration in your `tsconfig.json`:
 }
 ```
 
-# Express app
+This template engine can be used in express and NestJS applications. The function `setupReactViews()` is provided, with which the engine is made available to the application.
+
+```ts
+import { setupReactViews } from 'express-tsx-views'
+
+const options = {
+  viewsDirectory: path.resolve(__dirname, '../views'),
+}
+
+setupReactViews(app, options)
+```
+
+The following options may be passed:
+
+ Option | Type | Description | Default 
+--------|------|-------------|---------
+`viewsDirectory` | `string` | The directory where your views (`.tsx` files) are stored. Must be specified. | -
+`doctype` | `string` | [Doctype](https://developer.mozilla.org/en-US/docs/Glossary/Doctype) to be used. | `<!DOCTYPE html>\n`
+`prettify` | `boolean` | If activated, the generated HTML string is formatted using [prettier](https://github.com/prettier/prettier). | `false`
+
+## Express
 
 Example express app (See also `example/app.ts` in this project):
 
@@ -82,7 +107,7 @@ export default class MyView extends Component<Props> {
 }
 ```
 
-# NestJS
+## NestJS
 
 express-tsx-views can also be used in [NestJS](https://nestjs.com/). For this purpose the template engine must be made available in your `main.ts`:
 
