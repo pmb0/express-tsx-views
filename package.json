@@ -3,6 +3,24 @@
   "version": "1.1.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "description": "Server-side JSX/TSX rendering for your express or NestJS application 🚀",
+  "author": "Philipp Busse",
+  "bugs": {
+    "url": "https://github.com/pmb0/express-tsx-views/issues"
+  },
+  "homepage": "https://github.com/pmb0/express-tsx-views#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmb0/express-tsx-views.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "express",
+    "nestjs",
+    "ssr",
+    "template-engine"
+  ],
   "devDependencies": {
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-conventional": "^9.1.1",
