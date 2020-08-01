@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/pmb0/express-tsx-views/compare/v1.1.1...v1.1.2) (2020-08-01)
+
+
+### Bug Fixes
+
+* add missing package.json fields ([ec78e7c](https://github.com/pmb0/express-tsx-views/commit/ec78e7c3ffd03d8a7b90a2bbc3d2af05794552a1))
+
 ## [1.1.1](https://github.com/pmb0/express-tsx-views/compare/v1.1.0...v1.1.1) (2020-07-31)
 
 
