@@ -1,5 +1,6 @@
 import express, { Express } from 'express'
-import { setupReactViews, reactViews } from './react-view-engine'
+import { resolve } from 'path'
+import { reactViews, setupReactViews } from './react-view-engine'
 
 describe('react-view-engine', () => {
   let app: Express
@@ -59,6 +60,24 @@ describe('react-view-engine', () => {
         expect.objectContaining({
           message: `Module ${__filename} does not have an default export`,
         })
+      )
+    })
+
+    it('renders .tsx files', async () => {
+      const renderFile = reactViews({ viewsDirectory: __dirname })
+
+      const callback = jest.fn()
+
+      await renderFile(
+        resolve(__dirname, '../example/views/my-view'),
+        {},
+        callback
+      )
+
+      expect(callback).toBeCalledWith(
+        null,
+        `<!DOCTYPE html>
+<html><head><meta charSet="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title></title></head><body><h1></h1><p>Some component:</p>Hello from MyComponent! Provided prop: foo</body></html>`
       )
     })
   })
