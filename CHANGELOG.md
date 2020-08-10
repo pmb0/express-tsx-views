@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/pmb0/express-tsx-views/compare/v1.1.2...v1.1.3) (2020-08-10)
+
+
+### Bug Fixes
+
+* **build:** do not bundle test files ([29e12be](https://github.com/pmb0/express-tsx-views/commit/29e12bef2be46df441539da480087347bc7b07d3))
+
 ## [1.1.2](https://github.com/pmb0/express-tsx-views/compare/v1.1.1...v1.1.2) (2020-08-01)
 
 
