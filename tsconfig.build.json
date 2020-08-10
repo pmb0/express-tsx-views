@@ -6,6 +6,7 @@
     "example",
     "test",
     "dist",
-    "**/*spec.ts"
+    "**/*spec.ts",
+    "**/*test.ts"
   ]
 }
