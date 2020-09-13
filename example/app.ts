@@ -9,7 +9,10 @@ export const app = express()
 setupReactViews(app, {
   viewsDirectory: resolve(__dirname, 'views'),
   prettify: true,
-  transform: (html) => html.replace('<!-- CSS -->', 'h1{color:red}'),
+  transform: async (html) => {
+    await new Promise((resolve) => setTimeout(resolve, 100))
+    return html.replace('<!-- CSS -->', 'h1{color:red}')
+  },
 })
 
 app.get('/', (req: Request, res: Response, _next: NextFunction) => {

@@ -7,7 +7,7 @@ export interface ReactViewsOptions {
   doctype?: string
   prettify?: boolean
   viewsDirectory: string
-  transform?: (html: string) => string
+  transform?: (html: string) => string | Promise<string>
 }
 
 type EngineCallbackParameters = Parameters<Parameters<Application['engine']>[1]>
@@ -67,7 +67,7 @@ export function reactViews(reactViewOptions: ReactViewsOptions) {
       const doctype = reactViewOptions.doctype ?? '<!DOCTYPE html>\n'
       const transform = reactViewOptions.transform || ((html) => html)
 
-      next(null, transform(doctype + html))
+      next(null, await transform(doctype + html))
     } catch (error) {
       next(error)
     }
