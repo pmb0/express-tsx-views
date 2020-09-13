@@ -11,6 +11,9 @@ describe('react-view-engine', () => {
       "<!DOCTYPE html>
       <html lang=\\"de\\">
         <head>
+          <style>
+            h1{color:red}
+          </style>
           <meta charset=\\"UTF-8\\" />
           <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\" />
           <title>Test</title>
@@ -32,6 +35,9 @@ describe('react-view-engine', () => {
       "<!DOCTYPE html>
       <html>
         <head>
+          <style>
+            h1{color:red}
+          </style>
           <meta charset=\\"UTF-8\\" />
           <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\" />
           <title>from locals</title>
@@ -57,6 +63,9 @@ describe('react-view-engine', () => {
     expect(response.text).toMatchInlineSnapshot(`
       "<html lang=\\"de\\">
         <head>
+          <style>
+            <!-- CSS -->
+          </style>
           <meta charset=\\"UTF-8\\" />
           <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\" />
           <title>Test</title>

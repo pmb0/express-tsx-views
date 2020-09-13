@@ -7,6 +7,7 @@ export interface ReactViewsOptions {
   doctype?: string
   prettify?: boolean
   viewsDirectory: string
+  transform?: (html: string) => string
 }
 
 type EngineCallbackParameters = Parameters<Parameters<Application['engine']>[1]>
@@ -30,7 +31,7 @@ export function setupReactViews(
 }
 
 export function reactViews(reactViewOptions: ReactViewsOptions) {
-  // eslint-disable-next-line complexity
+  // eslint-disable-next-line complexity, sonarjs/cognitive-complexity
   return async function renderFile(
     ...[filename, options, next]: EngineCallbackParameters
   ): Promise<void> {
@@ -64,7 +65,9 @@ export function reactViews(reactViewOptions: ReactViewsOptions) {
       }
 
       const doctype = reactViewOptions.doctype ?? '<!DOCTYPE html>\n'
-      next(null, doctype + html)
+      const transform = reactViewOptions.transform || ((html) => html)
+
+      next(null, transform(doctype + html))
     } catch (error) {
       next(error)
     }

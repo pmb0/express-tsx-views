@@ -12,6 +12,7 @@ export class MyLayout extends Component<LayoutProps> {
     return (
       <html lang={this.props.lang}>
         <head>
+          <style dangerouslySetInnerHTML={{ __html: '<!-- CSS -->' }}></style>
           <meta charSet="UTF-8" />
           <meta
             name="viewport"
