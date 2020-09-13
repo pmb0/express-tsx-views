@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/pmb0/express-tsx-views/compare/v1.2.0...v1.2.1) (2020-09-13)
+
+
+### Bug Fixes
+
+* **transform:** transform function may be async ([8fb4a9f](https://github.com/pmb0/express-tsx-views/commit/8fb4a9f1e3c2378d8510087d1ecd8297bad395a8))
+
 # [1.2.0](https://github.com/pmb0/express-tsx-views/compare/v1.1.3...v1.2.0) (2020-09-13)
 
 
