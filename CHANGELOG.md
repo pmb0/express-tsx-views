@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/pmb0/express-tsx-views/compare/v1.1.3...v1.2.0) (2020-09-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency prettier to v2.1.0 ([a28cd52](https://github.com/pmb0/express-tsx-views/commit/a28cd52689d453628798b7ca39e433b502231e87))
+* **deps:** update dependency prettier to v2.1.1 ([4b66aee](https://github.com/pmb0/express-tsx-views/commit/4b66aee3497528a9f3109ade14ea434dcdd3a9cd))
+
+
+### Features
+
+* **transform:** add post-render html transform ([6cddbb2](https://github.com/pmb0/express-tsx-views/commit/6cddbb21ca9a9f2b843751e516d5b998baa85a64))
+
 ## [1.1.3](https://github.com/pmb0/express-tsx-views/compare/v1.1.2...v1.1.3) (2020-08-10)
 
 
