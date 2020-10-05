@@ -30,12 +30,13 @@ For this to work, the templates are imported dynamically during rendering. And f
 $ npm install --save express-tsx-views
 ```
 
-You have to set the `jsx` setting in your TypeScript configuration `tsconfig.json` to the value `react`:
+You have to set the `jsx` setting in your TypeScript configuration `tsconfig.json` to the value `react` and to enable `esModuleInterop`:
 
 ```json
 {
   "compilerOptions": {
-    "jsx": "react"
+    "jsx": "react",
+    "esModuleInterop":  true,
   }
 }
 ```
