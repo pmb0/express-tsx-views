@@ -2,12 +2,12 @@ import React, { Component, ReactElement } from 'react'
 
 export type Language = string
 
-export interface LayoutProps {
+export interface LayoutProperties {
   lang: Language
   title: string
 }
 
-export class MyLayout extends Component<LayoutProps> {
+export class MyLayout extends Component<LayoutProperties> {
   render(): ReactElement {
     return (
       <html lang={this.props.lang}>

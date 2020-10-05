@@ -15,22 +15,18 @@ describe('react-view-engine', () => {
 
   describe('setupReactViews()', () => {
     it('throws an error if "viewDirectory" was not provided', () => {
-      expect.assertions(1)
-
-      try {
-        // @ts-ignore
-        setupReactViews(app, {})
-      } catch (error) {
-        expect(error).toEqual(new Error('viewsDirectory missing'))
-      }
+      // @ts-ignore
+      expect(() => setupReactViews(app, {})).toThrow(
+        new Error('viewsDirectory missing')
+      )
     })
 
     it('sets the view engine', () => {
       setupReactViews(app, { viewsDirectory: '/tmp' })
 
-      expect(engineSpy).toBeCalledWith('tsx', expect.any(Function))
-      expect(setSpy).toBeCalledWith('view engine', 'tsx')
-      expect(setSpy).toBeCalledWith('views', '/tmp')
+      expect(engineSpy).toHaveBeenCalledWith('tsx', expect.any(Function))
+      expect(setSpy).toHaveBeenCalledWith('view engine', 'tsx')
+      expect(setSpy).toHaveBeenCalledWith('views', '/tmp')
     })
   })
 
@@ -41,7 +37,7 @@ describe('react-view-engine', () => {
       const callback = jest.fn()
       await renderFile('does-not-exist', {}, callback)
 
-      expect(callback).toBeCalledWith(
+      expect(callback).toHaveBeenCalledWith(
         expect.objectContaining({
           message: `Cannot find module 'does-not-exist' from 'src/react-view-engine.ts'`,
         })
@@ -56,7 +52,7 @@ describe('react-view-engine', () => {
       // any .ts(x) file without a default export
       await renderFile(__filename, {}, callback)
 
-      expect(callback).toBeCalledWith(
+      expect(callback).toHaveBeenCalledWith(
         expect.objectContaining({
           message: `Module ${__filename} does not have an default export`,
         })
@@ -74,7 +70,7 @@ describe('react-view-engine', () => {
         callback
       )
 
-      expect(callback).toBeCalledWith(
+      expect(callback).toHaveBeenCalledWith(
         null,
         `<!DOCTYPE html>
 <html><head><style><!-- CSS --></style><meta charSet="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title></title></head><body><h1></h1><p>Some component:</p>Hello from MyComponent! Provided prop: foo</body></html>`
