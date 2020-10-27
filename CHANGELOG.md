@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/pmb0/express-tsx-views/compare/v1.2.2...v1.2.3) (2020-10-27)
+
+
+### Bug Fixes
+
+* support react@^17 ([79bc57d](https://github.com/pmb0/express-tsx-views/commit/79bc57d88861797cdc54be7da36dd045d41fec5c))
+
 ## [1.2.2](https://github.com/pmb0/express-tsx-views/compare/v1.2.1...v1.2.2) (2020-09-16)
 
 

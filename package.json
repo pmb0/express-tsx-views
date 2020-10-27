@@ -1,6 +1,6 @@
 {
   "name": "express-tsx-views",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "Server-side JSX/TSX rendering for your express or NestJS application 🚀",
