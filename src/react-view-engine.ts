@@ -16,7 +16,7 @@ export type ExpressLikeApp = Pick<Application, 'set' | 'engine'>
 
 export function setupReactViews(
   app: ExpressLikeApp,
-  options: ReactViewsOptions
+  options: ReactViewsOptions,
 ): void {
   if (!options.viewsDirectory) {
     throw new Error('viewsDirectory missing')
@@ -54,8 +54,8 @@ export function reactViews(reactViewOptions: ReactViewsOptions) {
         React.createElement(
           context.Provider,
           { value: { ...vars, ...settings, ..._locals } },
-          React.createElement(Component, vars)
-        )
+          React.createElement(Component, vars),
+        ),
       )
 
       if (reactViewOptions.prettify ?? false) {

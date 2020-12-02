@@ -17,7 +17,7 @@ describe('react-view-engine', () => {
     it('throws an error if "viewDirectory" was not provided', () => {
       // @ts-ignore
       expect(() => setupReactViews(app, {})).toThrow(
-        new Error('viewsDirectory missing')
+        new Error('viewsDirectory missing'),
       )
     })
 
@@ -40,7 +40,7 @@ describe('react-view-engine', () => {
       expect(callback).toHaveBeenCalledWith(
         expect.objectContaining({
           message: `Cannot find module 'does-not-exist' from 'src/react-view-engine.ts'`,
-        })
+        }),
       )
     })
 
@@ -55,7 +55,7 @@ describe('react-view-engine', () => {
       expect(callback).toHaveBeenCalledWith(
         expect.objectContaining({
           message: `Module ${__filename} does not have an default export`,
-        })
+        }),
       )
     })
 
@@ -67,13 +67,13 @@ describe('react-view-engine', () => {
       await renderFile(
         resolve(__dirname, '../example/views/my-view'),
         {},
-        callback
+        callback,
       )
 
       expect(callback).toHaveBeenCalledWith(
         null,
         `<!DOCTYPE html>
-<html><head><style><!-- CSS --></style><meta charSet="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title></title></head><body><h1></h1><p>Some component:</p>Hello from MyComponent! Provided prop: foo</body></html>`
+<html><head><style><!-- CSS --></style><meta charSet="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title></title></head><body><h1></h1><p>Some component:</p>Hello from MyComponent! Provided prop: foo</body></html>`,
       )
     })
   })

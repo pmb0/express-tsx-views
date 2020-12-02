@@ -26,5 +26,5 @@ app.get(
   (request: Request, res: Response, _next: NextFunction) => {
     res.locals.title = 'from locals'
     res.render('my-view')
-  }
+  },
 )
