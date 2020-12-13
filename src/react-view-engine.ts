@@ -14,6 +14,10 @@ type EngineCallbackParameters = Parameters<Parameters<Application['engine']>[1]>
 
 export type ExpressLikeApp = Pick<Application, 'set' | 'engine'>
 
+export function isTranspiled(): boolean {
+  return require.main?.filename?.endsWith('.js') ?? true
+}
+
 export function setupReactViews(
   app: ExpressLikeApp,
   options: ReactViewsOptions,
@@ -22,7 +26,7 @@ export function setupReactViews(
     throw new Error('viewsDirectory missing')
   }
 
-  const extension = __filename.endsWith('.js') ? 'js' : 'tsx'
+  const extension = isTranspiled() ? 'js' : 'tsx'
 
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
   app.engine(extension, reactViews(options))
