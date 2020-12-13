@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/pmb0/express-tsx-views/compare/v1.2.5...v1.2.6) (2020-12-13)
+
+
+### Bug Fixes
+
+* add missing `ReactViewsOptions` docs ([20ea5c9](https://github.com/pmb0/express-tsx-views/commit/20ea5c9dd8bd2747890c38a8297d847866aa4590))
+
 ## [1.2.5](https://github.com/pmb0/express-tsx-views/compare/v1.2.4...v1.2.5) (2020-12-13)
 
 
