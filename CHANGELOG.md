@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/pmb0/express-tsx-views/compare/v1.2.4...v1.2.5) (2020-12-13)
+
+
+### Bug Fixes
+
+* support `nodemon --exec ts-node` ([d277c0f](https://github.com/pmb0/express-tsx-views/commit/d277c0fb6cfa2d254eb639c18812afbb04614ad7))
+
 ## [1.2.4](https://github.com/pmb0/express-tsx-views/compare/v1.2.3...v1.2.4) (2020-11-24)
 
 
