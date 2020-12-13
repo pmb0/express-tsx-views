@@ -1,18 +1,11 @@
-import { Application } from 'express-serve-static-core'
 import prettier from 'prettier'
 import React from 'react'
 import * as ReactDOM from 'react-dom/server'
-
-export interface ReactViewsOptions {
-  doctype?: string
-  prettify?: boolean
-  viewsDirectory: string
-  transform?: (html: string) => string | Promise<string>
-}
-
-type EngineCallbackParameters = Parameters<Parameters<Application['engine']>[1]>
-
-export type ExpressLikeApp = Pick<Application, 'set' | 'engine'>
+import {
+  EngineCallbackParameters,
+  ExpressLikeApp,
+  ReactViewsOptions,
+} from './react-view-engine.interface'
 
 export function isTranspiled(): boolean {
   return require.main?.filename?.endsWith('.js') ?? true
