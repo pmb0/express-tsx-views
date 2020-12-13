@@ -1,7 +1,7 @@
 /* eslint-disable toplevel/no-toplevel-side-effect */
 import express, { NextFunction, Request, Response } from 'express'
 import { resolve } from 'path'
-import { setupReactViews } from '..'
+import { setupReactViews } from '../src'
 import { Props as Properties } from './views/my-view'
 
 export const app = express()
