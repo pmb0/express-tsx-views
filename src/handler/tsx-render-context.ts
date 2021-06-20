@@ -1,15 +1,15 @@
-import { Component, ReactElement } from 'react'
+import { ReactElement, ReactHTML } from 'react'
 
 export class TsxRenderContext {
   private _element?: ReactElement
   private _html?: string
 
   constructor(
-    private readonly _component: Component,
+    private readonly _component: keyof ReactHTML,
     private readonly _vars: Record<string, unknown>,
   ) {}
 
-  get component(): any {
+  get component(): keyof ReactHTML {
     return this._component
   }
 
