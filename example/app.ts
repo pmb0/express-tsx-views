@@ -46,3 +46,8 @@ app.get(
     res.render('my-view')
   },
 )
+
+app.get('/gql', (request: Request, res: Response, _next: NextFunction) => {
+  const data: Properties = { title: 'Test', lang: 'de' }
+  res.render('my-gql-view', data)
+})
