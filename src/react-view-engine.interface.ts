@@ -1,4 +1,5 @@
 import { Application } from 'express'
+import { TsxRenderMiddleware } from './handler'
 
 export interface ReactViewsOptions {
   /**
@@ -15,6 +16,8 @@ export interface ReactViewsOptions {
   /**
    * If activated, the generated HTML string is formatted using
    * [prettier](https://github.com/prettier/prettier)
+   *
+   * @deprecated use `PrettifyRenderMiddleware` instead, @see `middlewares`
    */
   prettify?: boolean
 
@@ -25,6 +28,8 @@ export interface ReactViewsOptions {
    * `string`.
    */
   transform?: (html: string) => string | Promise<string>
+
+  middlewares?: TsxRenderMiddleware[]
 }
 
 export type EngineCallbackParameters = Parameters<

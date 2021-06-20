@@ -16,12 +16,14 @@ For this to work, the templates are imported dynamically during rendering. And f
 
 - Fast, since the JSX/TSX files do not have to be transpiled on-the-fly with every request
 - Works with compiled files (`.js` / `node`) and uncompiled files (`.tsx` / `ts-node`, `ts-jest`, ...)
+- Supports execution of GraphQL queries from JSX components
 
 # Table of contents <!-- omit in toc -->
 
 - [Usage](#usage)
   - [Express](#express)
   - [NestJS](#nestjs)
+- [GraphQL](#graphql)
 - [License](#license)
 
 # Usage
@@ -61,6 +63,7 @@ The following options may be passed:
 | `doctype`        | `string`                   | [Doctype](https://developer.mozilla.org/en-US/docs/Glossary/Doctype) to be used.                                                                                                                                                      | `<!DOCTYPE html>\n` |
 | `prettify`       | `boolean`                  | If activated, the generated HTML string is formatted using [prettier](https://github.com/prettier/prettier).                                                                                                                          | `false`             |
 | `transform`      | `(html: string) => string` | With this optional function the rendered HTML document can be modified. For this purpose a function must be defined which gets the HTML `string` as argument. The function returns a modified version of the HTML string as `string`. | -                   |
+| `middlewares`    | `TsxRenderMiddleware[]`    | A list of `TsxRenderMiddleware` objects that can be used to modify the render context. `express-tsx-views` provides the middlewares `ApolloRenderMiddleware` and `PrettifyRenderMiddleware`.                                          | -                   |
 
 ## Express
 
@@ -132,6 +135,89 @@ import { Props } from './views/my-view'
 @Render('my-view')
 getMyRoute(): Props {
   return { title: "Hello from NestJS", lang: "de" }
+}
+```
+
+# GraphQL
+
+This module supports the execution of GraphQL queries from the TSX template. For this purpose `@apollo/client` and `cross-fetch` have to be installed separately:
+
+```sh
+$ npm install --save @apollo/client cross-fetch
+```
+
+Now you can create an `ApolloRenderMiddleware` object and configure it as a middleware within `express-tsx-views`:
+
+```ts
+import { ApolloRenderMiddleware } from "express-tsx-views";
+// needed to create a apollo client HTTP link:
+import { fetch } from "cross-fetch";
+
+// Apollo client linking to an example GraphQL server
+const apollo = new ApolloClient({
+  ssrMode: true,
+  link: createHttpLink({
+    uri: "https://swapi-graphql.netlify.app/.netlify/functions/index",
+    fetch,
+  }),
+  cache: new InMemoryCache(),
+});
+
+setupReactViews(app, {
+  viewsDirectory: resolve(__dirname, "views"),
+  middlewares: [new ApolloRenderMiddleware(apollo)],
+});
+```
+
+Example view (see the example folder in this project):
+
+```ts
+export interface Film {
+  id: string;
+  title: string;
+  releaseDate: string;
+}
+
+export interface AllFilms {
+  allFilms: {
+    films: Film[];
+  };
+}
+
+const MY_QUERY = gql`
+  query AllFilms {
+    allFilms {
+      films {
+        id
+        title
+        releaseDate
+      }
+    }
+  }
+`;
+
+export interface Props {
+  title: string;
+  lang: string;
+}
+
+export default function MyView(props: Props): ReactElement {
+  const { data, error } = useQuery<AllFilms>(MY_QUERY);
+
+  if (error) {
+    throw error;
+  }
+
+  return (
+    <MyLayout lang={props.lang} title={props.title}>
+      <h2>Films:</h2>
+      {data?.allFilms.films.map((film) => (
+        <ul key={film.id}>
+          {film.title} ({new Date(film.releaseDate).getFullYear()})
+        </ul>
+      ))}
+    </MyLayout>
+  );
 }
 ```
 
