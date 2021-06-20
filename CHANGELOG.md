@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/pmb0/express-tsx-views/compare/v1.3.0...v1.3.1) (2021-06-20)
+
+
+### Bug Fixes
+
+* @apollo/client is an optional dep ([ccf72d0](https://github.com/pmb0/express-tsx-views/commit/ccf72d0df16e761c1a716891464414070ffddb52))
+
 # [1.3.0](https://github.com/pmb0/express-tsx-views/compare/v1.2.6...v1.3.0) (2021-06-20)
 
 
