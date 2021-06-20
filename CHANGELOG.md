@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/pmb0/express-tsx-views/compare/v1.2.6...v1.3.0) (2021-06-20)
+
+
+### Bug Fixes
+
+* upgrade deps ([d1f7ce2](https://github.com/pmb0/express-tsx-views/commit/d1f7ce25130233c57646324127e4993d6270bfb7))
+
+
+### Features
+
+* support Apollo GraphQL queries ([e729508](https://github.com/pmb0/express-tsx-views/commit/e72950819be8a821fce32852dcf427a94a7eeb29))
+
 ## [1.2.6](https://github.com/pmb0/express-tsx-views/compare/v1.2.5...v1.2.6) (2020-12-13)
 
 
