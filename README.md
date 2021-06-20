@@ -140,7 +140,7 @@ getMyRoute(): Props {
 
 # GraphQL
 
-This module supports the execution of GraphQL queries from the TSX template. For this purpose `@apollo/client` and `cross-fetch` have to be installed separately:
+This module supports the execution of GraphQL queries from the TSX template. For this purpose `graphql`, `@apollo/client` and `cross-fetch` have to be installed separately:
 
 ```sh
 $ npm install --save @apollo/client cross-fetch
@@ -150,7 +150,7 @@ Now you can create an `ApolloRenderMiddleware` object and configure it as a midd
 
 ```ts
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
-import { ApolloRenderMiddleware } from "express-tsx-views/apollo";
+import { ApolloRenderMiddleware } from "express-tsx-views/dist/apollo";
 // needed to create a apollo client HTTP link:
 import { fetch } from "cross-fetch";
 
