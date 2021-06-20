@@ -3,11 +3,8 @@ import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 import { fetch } from 'cross-fetch'
 import express, { NextFunction, Request, Response } from 'express'
 import { resolve } from 'path'
-import {
-  ApolloRenderMiddleware,
-  PrettifyRenderMiddleware,
-  setupReactViews,
-} from '../src'
+import { PrettifyRenderMiddleware, setupReactViews } from '../src'
+import { ApolloRenderMiddleware } from '../src/apollo'
 import { Props as Properties } from './views/my-view'
 
 export const app = express()

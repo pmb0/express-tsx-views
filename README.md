@@ -149,7 +149,8 @@ $ npm install --save @apollo/client cross-fetch
 Now you can create an `ApolloRenderMiddleware` object and configure it as a middleware within `express-tsx-views`:
 
 ```ts
-import { ApolloRenderMiddleware } from "express-tsx-views";
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloRenderMiddleware } from "express-tsx-views/apollo";
 // needed to create a apollo client HTTP link:
 import { fetch } from "cross-fetch";
 
