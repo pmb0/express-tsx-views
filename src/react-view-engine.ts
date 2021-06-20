@@ -1,6 +1,5 @@
-import prettier from 'prettier'
-import React from 'react'
-import * as ReactDOM from 'react-dom/server'
+import { DefaultTsxRenderMiddleware, TsxRenderContext } from './handler'
+import { PrettifyRenderMiddleware } from './handler/middleware/prettify-render.middleware'
 import {
   EngineCallbackParameters,
   ExpressLikeApp,
@@ -42,29 +41,42 @@ export function reactViews(reactViewOptions: ReactViewsOptions) {
       const Component = (await import(filename)).default
 
       if (!Component) {
-        throw new Error(`Module ${filename} does not have an default export`)
+        throw new Error(`Module ${filename} does not have a default export`)
       }
 
-      const context = React.createContext({})
+      let context = new TsxRenderContext(Component, vars)
 
-      let html = ReactDOM.renderToStaticMarkup(
-        React.createElement(
-          context.Provider,
-          { value: { ...vars, ...settings, ..._locals } },
-          React.createElement(Component, vars),
-        ),
-      )
+      const defaultRenderer = new DefaultTsxRenderMiddleware()
+
+      const middlewares = reactViewOptions.middlewares ?? []
 
       if (reactViewOptions.prettify ?? false) {
-        html = prettier.format(html, {
-          parser: 'html',
-        })
+        middlewares.push(new PrettifyRenderMiddleware())
+      }
+
+      // eslint-disable-next-line unicorn/no-reduce
+      middlewares.reduce((prev, next) => {
+        prev.setNext(next)
+        return next
+      }, defaultRenderer)
+
+      context = defaultRenderer.createElement(context)
+
+      if (!context.hasElement()) {
+        throw new Error('element was not created')
+      }
+
+      context = await defaultRenderer.render(context)
+
+      if (!context.isRendered) {
+        throw new Error('element was not rendered')
       }
 
       const doctype = reactViewOptions.doctype ?? '<!DOCTYPE html>\n'
       const transform = reactViewOptions.transform || ((html) => html)
 
-      next(null, await transform(doctype + html))
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      next(null, await transform(doctype + context.html!))
     } catch (error) {
       next(error)
     }

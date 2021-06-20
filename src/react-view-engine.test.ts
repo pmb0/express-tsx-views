@@ -53,9 +53,7 @@ describe('react-view-engine', () => {
       await renderFile(__filename, {}, callback)
 
       expect(callback).toHaveBeenCalledWith(
-        expect.objectContaining({
-          message: `Module ${__filename} does not have an default export`,
-        }),
+        new Error(`Module ${__filename} does not have a default export`),
       )
     })
 
@@ -65,15 +63,14 @@ describe('react-view-engine', () => {
       const callback = jest.fn()
 
       await renderFile(
-        resolve(__dirname, '../example/views/my-view'),
+        resolve(__dirname, '../example/views/my-component'),
         {},
         callback,
       )
 
       expect(callback).toHaveBeenCalledWith(
         null,
-        `<!DOCTYPE html>
-<html><head><style><!-- CSS --></style><meta charSet="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title></title></head><body><h1></h1><p>Some component:</p>Hello from MyComponent! Provided prop: foo</body></html>`,
+        '<!DOCTYPE html>\nHello from MyComponent! Provided prop: ',
       )
     })
   })

@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import request from 'supertest'
-import { setupReactViews } from '..'
 import { app } from '../example/app'
+import { setupReactViews } from '../src'
 
 describe('react-view-engine', () => {
   test('Rendering', async () => {
@@ -59,24 +59,9 @@ describe('react-view-engine', () => {
       doctype: '',
     })
 
-    const response = await request(app).get('/').expect(200)
-    expect(response.text).toMatchInlineSnapshot(`
-      "<html lang=\\"de\\">
-        <head>
-          <style>
-            <!-- CSS -->
-          </style>
-          <meta charset=\\"UTF-8\\" />
-          <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\" />
-          <title>Test</title>
-        </head>
-        <body>
-          <h1>Test</h1>
-          <p>Some component:</p>
-          Hello from MyComponent! Provided prop: foo
-        </body>
-      </html>
-      "
-    `)
+    const response = await request(app).get('/with-locals').expect(200)
+    expect(response.text).toMatchInlineSnapshot(
+      `"<html><head><style><!-- CSS --></style><meta charSet=\\"UTF-8\\"/><meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\"/><title>from locals</title></head><body><h1>from locals</h1><p>Some component:</p>Hello from MyComponent! Provided prop: foo</body></html>"`,
+    )
   })
 })
