@@ -54,7 +54,7 @@ export function reactViews(reactViewOptions: ReactViewsOptions) {
         middlewares.push(new PrettifyRenderMiddleware())
       }
 
-      // eslint-disable-next-line unicorn/no-reduce
+      // eslint-disable-next-line sonarjs/no-ignored-return, unicorn/no-array-reduce
       middlewares.reduce((prev, next) => {
         prev.setNext(next)
         return next
