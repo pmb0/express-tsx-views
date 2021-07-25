@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/pmb0/express-tsx-views/compare/v1.3.1...v1.3.2) (2021-07-25)
+
+
+### Bug Fixes
+
+* upgrade deps ([7f32376](https://github.com/pmb0/express-tsx-views/commit/7f32376811dcce9d27084e5a810baa414a8524c5))
+
 ## [1.3.1](https://github.com/pmb0/express-tsx-views/compare/v1.3.0...v1.3.1) (2021-06-20)
 
 
