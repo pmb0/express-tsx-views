@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/pmb0/express-tsx-views/compare/v1.4.0...v1.4.1) (2021-07-31)
+
+
+### Bug Fixes
+
+* fix runtime error ([0f4bc6c](https://github.com/pmb0/express-tsx-views/commit/0f4bc6ccf6e14be57c0c594130b165ac40cb92f2))
+
 # [1.4.0](https://github.com/pmb0/express-tsx-views/compare/v1.3.2...v1.4.0) (2021-07-31)
 
 
