@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/pmb0/express-tsx-views/compare/v1.4.1...v1.4.2) (2021-07-31)
+
+
+### Bug Fixes
+
+* do not require() optional dependencies ([fc25974](https://github.com/pmb0/express-tsx-views/commit/fc259743c84e5be34bf551a700becb6846f9570d))
+
 ## [1.4.1](https://github.com/pmb0/express-tsx-views/compare/v1.4.0...v1.4.1) (2021-07-31)
 
 
