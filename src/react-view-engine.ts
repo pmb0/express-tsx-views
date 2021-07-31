@@ -52,6 +52,8 @@ export function reactViews(reactViewOptions: ReactViewsOptions) {
     const { settings, _locals, cache, contexts, ...vars } =
       options as ExpressRenderOptions
 
+    console.log({ options })
+
     try {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       const Component = (await import(filename)).default
