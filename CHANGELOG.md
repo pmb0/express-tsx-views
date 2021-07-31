@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/pmb0/express-tsx-views/compare/v1.4.2...v1.4.3) (2021-07-31)
+
+
+### Bug Fixes
+
+* remove debug ([14bc3be](https://github.com/pmb0/express-tsx-views/commit/14bc3be6d079b66bc4567104f4985ff9d09f1a68))
+
 ## [1.4.2](https://github.com/pmb0/express-tsx-views/compare/v1.4.1...v1.4.2) (2021-07-31)
 
 
