@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/pmb0/express-tsx-views/compare/v1.3.2...v1.4.0) (2021-07-31)
+
+
+### Features
+
+* enable creation of React contexts ([a0b2393](https://github.com/pmb0/express-tsx-views/commit/a0b23932c12227f74e200d3abdf06bb86b792a6b))
+
 ## [1.3.2](https://github.com/pmb0/express-tsx-views/compare/v1.3.1...v1.3.2) (2021-07-25)
 
 
