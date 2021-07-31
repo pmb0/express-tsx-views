@@ -1,3 +1,5 @@
+export * from './middleware/apollo-render.middleware'
+export * from './middleware/create-react-context.middleware'
 export * from './middleware/default-render.middleware'
 export * from './middleware/prettify-render.middleware'
 export * from './middleware/tsx-render.middleware'

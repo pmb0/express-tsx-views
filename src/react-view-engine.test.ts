@@ -70,7 +70,7 @@ describe('react-view-engine', () => {
 
       expect(callback).toHaveBeenCalledWith(
         null,
-        '<!DOCTYPE html>\nHello from MyComponent! Provided prop: ',
+        '<!DOCTYPE html>\nHello from MyComponent! Provided prop: <figure><pre></pre></figure>',
       )
     })
   })

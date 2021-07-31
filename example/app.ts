@@ -3,9 +3,14 @@ import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 import { fetch } from 'cross-fetch'
 import express, { NextFunction, Request, Response } from 'express'
 import { resolve } from 'path'
-import { PrettifyRenderMiddleware, setupReactViews } from '../src'
-import { ApolloRenderMiddleware } from '../src/apollo'
-import { Props as Properties } from './views/my-view'
+import {
+  addReactContext,
+  ApolloRenderMiddleware,
+  PrettifyRenderMiddleware,
+  setupReactViews,
+} from '../src'
+import { MyContext, MyContext2 } from './my-context'
+import { Props } from './views/my-view'
 
 export const app = express()
 
@@ -31,20 +36,32 @@ setupReactViews(app, {
   },
 })
 
-app.get('/', (request: Request, res: Response, _next: NextFunction) => {
-  const data: Properties = { title: 'Test', lang: 'de' }
+// Set react context globally for all routes
+app.use((req: Request, res: Response, next: NextFunction) => {
+  addReactContext(res, MyContext, {
+    id: 1,
+    name: 'test',
+  })
+  next()
+})
+
+app.get('/', (request: Request, res: Response) => {
+  const data: Props = { title: 'Test', lang: 'de' }
+
+  addReactContext(res, MyContext2, { someProperty: 'mausi' })
+
   res.render('my-view', data)
 })
 
 app.get(
   '/with-locals',
-  (request: Request, res: Response, _next: NextFunction) => {
+  (request: Request, res: Response<string, Partial<Props>>) => {
     res.locals.title = 'from locals'
     res.render('my-view')
   },
 )
 
-app.get('/gql', (request: Request, res: Response, _next: NextFunction) => {
-  const data: Properties = { title: 'Test', lang: 'de' }
+app.get('/gql', (request: Request, res: Response) => {
+  const data: Props = { title: 'Test', lang: 'de' }
   res.render('my-gql-view', data)
 })

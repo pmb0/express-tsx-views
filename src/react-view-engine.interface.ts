@@ -1,4 +1,5 @@
 import { Application } from 'express'
+import { Context } from 'react'
 import { TsxRenderMiddleware } from './handler'
 
 export interface ReactViewsOptions {
@@ -36,4 +37,18 @@ export type EngineCallbackParameters = Parameters<
   Parameters<Application['engine']>[1]
 >
 
-export type ExpressLikeApp = Pick<Application, 'set' | 'engine'>
+export type ExpressLikeApp = Application
+
+export type ContextDefinition<T = unknown> = [Context<T>, T]
+
+export interface ReactViewsContext<T> {
+  contexts: ContextDefinition<T>[]
+}
+
+export interface ExpressRenderOptions {
+  [name: string]: unknown
+  settings: Record<string, unknown>
+  _locals: Record<string, unknown>
+  cache: unknown
+  contexts?: ContextDefinition[]
+}

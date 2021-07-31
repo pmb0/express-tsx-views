@@ -1,4 +1,5 @@
 import React, { Component, ReactElement } from 'react'
+import { Dumper } from './dumper.component'
 
 export interface Properties {
   myProp: string
@@ -6,6 +7,11 @@ export interface Properties {
 
 export default class MyComponent extends Component<Properties> {
   render(): ReactElement {
-    return <>Hello from MyComponent! Provided prop: {this.props.myProp}</>
+    return (
+      <>
+        Hello from {MyComponent.name}! Provided prop:{' '}
+        <Dumper data={this.props.myProp} />
+      </>
+    )
   }
 }

@@ -16,6 +16,7 @@ For this to work, the templates are imported dynamically during rendering. And f
 
 - Fast, since the JSX/TSX files do not have to be transpiled on-the-fly with every request
 - Works with compiled files (`.js` / `node`) and uncompiled files (`.tsx` / `ts-node`, `ts-jest`, ...)
+- Provides the definition of React contexts on middleware level
 - Supports execution of GraphQL queries from JSX components
 
 # Table of contents <!-- omit in toc -->
@@ -23,7 +24,10 @@ For this to work, the templates are imported dynamically during rendering. And f
 - [Usage](#usage)
   - [Express](#express)
   - [NestJS](#nestjs)
-- [GraphQL](#graphql)
+- [Render Middlewares](#render-middlewares)
+  - [Prettify](#prettify)
+  - [Provide React Context](#provide-react-context)
+  - [GraphQL](#graphql)
 - [License](#license)
 
 # Usage
@@ -61,9 +65,8 @@ The following options may be passed:
 | ---------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
 | `viewsDirectory` | `string`                   | The directory where your views (`.tsx` files) are stored. Must be specified.                                                                                                                                                          | -                   |
 | `doctype`        | `string`                   | [Doctype](https://developer.mozilla.org/en-US/docs/Glossary/Doctype) to be used.                                                                                                                                                      | `<!DOCTYPE html>\n` |
-| `prettify`       | `boolean`                  | If activated, the generated HTML string is formatted using [prettier](https://github.com/prettier/prettier).                                                                                                                          | `false`             |
 | `transform`      | `(html: string) => string` | With this optional function the rendered HTML document can be modified. For this purpose a function must be defined which gets the HTML `string` as argument. The function returns a modified version of the HTML string as `string`. | -                   |
-| `middlewares`    | `TsxRenderMiddleware[]`    | A list of `TsxRenderMiddleware` objects that can be used to modify the render context. `express-tsx-views` provides the middlewares `ApolloRenderMiddleware` and `PrettifyRenderMiddleware`.                                          | -                   |
+| `middlewares`    | `TsxRenderMiddleware[]`    | A list of `TsxRenderMiddleware` objects that can be used to modify the render context. See [Render middlewares](#render-middlewares)                                                                                                  | -                   |
 
 ## Express
 
@@ -112,33 +115,70 @@ export default class MyView extends Component<Props> {
 
 ## NestJS
 
+See [nestjs-tsx-views](https://github.com/pmb0/nestjs-tsx-views).
+
 express-tsx-views can also be used in [NestJS](https://nestjs.com/). For this purpose the template engine must be made available in your `main.ts`:
 
-```ts
-import { setupReactViews } from "express-tsx-views";
+# Render Middlewares
 
-async function bootstrap() {
-  // ...
-  setupReactViews(app.getHttpAdapter().getInstance(), {
-    viewsDirectory: resolve(__dirname, "../views"),
+## Prettify
+
+Prettifies generated HTML markup using [prettier](https://github.com/prettier/prettier).
+
+```ts
+setupReactViews(app, {
+  middlewares: [new PrettifyRenderMiddleware()],
+});
+```
+
+## Provide React Context
+
+Provides a react context when rendering your react view.
+
+```ts
+// my-context.ts
+import {createContext} from 'react'
+
+export interface MyContextProps = {name: string}
+
+export const MyContext = createContext<MyContextProps | undefined>(undefined)
+```
+
+Use `addReactContext()` to set the context in your route or in any other middleware:
+
+```ts
+// app.ts
+
+// Route:
+app.get("/", (request: Request, res: Response) => {
+  addReactContext(res, MyContext, { name: "philipp" });
+
+  res.render("my-view");
+});
+
+// Middleware:
+app.use((req: Request, res: Response, next: NextFunction) => {
+  addReactContext(res, MyContext, {
+    name: "philipp",
   });
-}
-// ...
+  next();
+});
 ```
 
-Example controller:
+Now you can consume the context data in any component:
 
-```ts
-import { Props } from './views/my-view'
+```tsx
+// my-component.tsx
+import { useContext } from "react";
+import { MyContext } from "./my-context";
 
-@Get('/my-route')
-@Render('my-view')
-getMyRoute(): Props {
-  return { title: "Hello from NestJS", lang: "de" }
+export function MyComponent() {
+  const { name } = useContext(MyContext);
+  return <span>Hallo, {name}!</span>;
 }
 ```
 
-# GraphQL
+## GraphQL
 
 This module supports the execution of GraphQL queries from the TSX template. For this purpose `graphql`, `@apollo/client` and `cross-fetch` have to be installed separately:
 

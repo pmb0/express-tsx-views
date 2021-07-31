@@ -1,8 +1,15 @@
-import { DefaultTsxRenderMiddleware, TsxRenderContext } from './handler'
+import { Application, NextFunction, Request, Response } from 'express'
+import { Context } from 'react'
+import {
+  CreateReactContextRenderMiddleware,
+  DefaultTsxRenderMiddleware,
+  TsxRenderContext,
+} from './handler'
 import { PrettifyRenderMiddleware } from './handler/middleware/prettify-render.middleware'
 import {
   EngineCallbackParameters,
-  ExpressLikeApp,
+  ExpressRenderOptions,
+  ReactViewsContext,
   ReactViewsOptions,
 } from './react-view-engine.interface'
 
@@ -11,7 +18,7 @@ export function isTranspiled(): boolean {
 }
 
 export function setupReactViews(
-  app: ExpressLikeApp,
+  app: Application,
   options: ReactViewsOptions,
 ): void {
   if (!options.viewsDirectory) {
@@ -24,6 +31,28 @@ export function setupReactViews(
   app.engine(extension, reactViews(options))
   app.set('view engine', extension)
   app.set('views', options.viewsDirectory)
+
+  app.use(
+    (
+      _req: Request,
+      res: Response<string, ReactViewsContext<unknown>>,
+      next: NextFunction,
+    ) => {
+      res.locals.contexts = []
+      next()
+    },
+  )
+}
+
+export function addReactContext<T>(
+  res: Response,
+  context: Context<T>,
+  value: T,
+): void {
+  ;(res as Response<string, ReactViewsContext<T>>).locals.contexts.unshift([
+    context,
+    value,
+  ])
 }
 
 export function reactViews(reactViewOptions: ReactViewsOptions) {
@@ -32,9 +61,8 @@ export function reactViews(reactViewOptions: ReactViewsOptions) {
     ...[filename, options, next]: EngineCallbackParameters
   ): Promise<void> {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { settings, _locals, cache, ...vars } = options as {
-      [name: string]: { [n: string]: string }
-    }
+    const { settings, _locals, cache, contexts, ...vars } =
+      options as ExpressRenderOptions
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
@@ -49,6 +77,10 @@ export function reactViews(reactViewOptions: ReactViewsOptions) {
       const defaultRenderer = new DefaultTsxRenderMiddleware()
 
       const middlewares = reactViewOptions.middlewares ?? []
+
+      contexts?.forEach(([Context, props]) => {
+        middlewares.push(new CreateReactContextRenderMiddleware(Context, props))
+      })
 
       if (reactViewOptions.prettify ?? false) {
         middlewares.push(new PrettifyRenderMiddleware())
