@@ -1,4 +1,4 @@
-import { Application, NextFunction, Request, Response } from 'express'
+import { Application, Response } from 'express'
 import { Context } from 'react'
 import {
   CreateReactContextRenderMiddleware,
@@ -31,17 +31,6 @@ export function setupReactViews(
   app.engine(extension, reactViews(options))
   app.set('view engine', extension)
   app.set('views', options.viewsDirectory)
-
-  app.use(
-    (
-      _req: Request,
-      res: Response<string, ReactViewsContext<unknown>>,
-      next: NextFunction,
-    ) => {
-      res.locals.contexts = []
-      next()
-    },
-  )
 }
 
 export function addReactContext<T>(
@@ -49,10 +38,9 @@ export function addReactContext<T>(
   context: Context<T>,
   value: T,
 ): void {
-  ;(res as Response<string, ReactViewsContext<T>>).locals.contexts.unshift([
-    context,
-    value,
-  ])
+  const locals = (res as Response<string, ReactViewsContext<T>>).locals
+  locals.contexts ??= []
+  locals.contexts.unshift([context, value])
 }
 
 export function reactViews(reactViewOptions: ReactViewsOptions) {
