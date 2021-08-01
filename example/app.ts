@@ -5,10 +5,10 @@ import express, { NextFunction, Request, Response } from 'express'
 import { resolve } from 'path'
 import {
   addReactContext,
-  ApolloRenderMiddleware,
   PrettifyRenderMiddleware,
   setupReactViews,
 } from '../src'
+import { ApolloRenderMiddleware } from '../src/apollo'
 import { MyContext, MyContext2 } from './my-context'
 import { Props } from './views/my-view'
 
