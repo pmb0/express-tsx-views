@@ -69,6 +69,7 @@
     "lint": "eslint --cache .",
     "prebuild": "yarn clean",
     "start:example": "nodemon -w example --inspect example/bin/www.ts",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   }
 }
