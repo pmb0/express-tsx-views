@@ -14,12 +14,10 @@ export class DefaultTsxRenderMiddleware extends TsxRenderMiddleware {
   }
 
   public async render(context: TsxRenderContext): Promise<TsxRenderContext> {
-    context = await super.render(context)
-
     if (!context.isRendered && context.element) {
       context.html = ReactDOM.renderToStaticMarkup(context.element)
     }
 
-    return context
+    return super.render(context)
   }
 }
