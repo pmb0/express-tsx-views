@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/pmb0/express-tsx-views/compare/v1.4.3...v1.4.4) (2021-08-03)
+
+
+### Bug Fixes
+
+* run middleware pipeline in correct order ([c64d2b1](https://github.com/pmb0/express-tsx-views/commit/c64d2b1373558f864538df02466aff641da2c362))
+
 ## [1.4.3](https://github.com/pmb0/express-tsx-views/compare/v1.4.2...v1.4.3) (2021-07-31)
 
 
