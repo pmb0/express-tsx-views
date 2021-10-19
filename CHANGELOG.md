@@ -1,3 +1,10 @@
+## [1.4.6](https://github.com/pmb0/express-tsx-views/compare/v1.4.5...v1.4.6) (2021-10-19)
+
+
+### Bug Fixes
+
+* ugprade deps ([03a2cf9](https://github.com/pmb0/express-tsx-views/commit/03a2cf9b956ed65db1a8b3b4178c73dc2441ab7b))
+
 ## [1.4.5](https://github.com/pmb0/express-tsx-views/compare/v1.4.4...v1.4.5) (2021-09-15)
 
 
