@@ -25,7 +25,7 @@
     "@apollo/client": "^3.3.11",
     "@commitlint/cli": "^13.0.0",
     "@commitlint/config-conventional": "^13.0.0",
-    "@heise/eslint-config": "^19.0.0",
+    "@heise/eslint-config": "^20.0.7",
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/commit-analyzer": "^9.0.0",
     "@semantic-release/git": "^10.0.0",

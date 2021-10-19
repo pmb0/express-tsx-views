@@ -60,6 +60,7 @@ export function reactViews(reactViewOptions: ReactViewsOptions) {
         throw new Error(`Module ${filename} does not have a default export`)
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       let context = new TsxRenderContext(Component, vars)
 
       const defaultRenderer = new DefaultTsxRenderMiddleware()
