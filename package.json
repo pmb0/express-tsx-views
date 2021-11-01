@@ -37,7 +37,7 @@
     "@types/supertest": "^2.0.10",
     "cross-fetch": "^3.0.6",
     "express": "^4.17.1",
-    "graphql": "^15.0.0",
+    "graphql": "^16.0.0",
     "husky": "^7.0.0",
     "jest": "^27.0.4",
     "lint-staged": "^11.0.0",
