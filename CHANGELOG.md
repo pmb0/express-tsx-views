@@ -1,3 +1,10 @@
+## [1.4.11](https://github.com/pmb0/express-tsx-views/compare/v1.4.10...v1.4.11) (2023-01-07)
+
+
+### Bug Fixes
+
+* **deps:** update dependency prettier to v2.8.2 ([d7a279d](https://github.com/pmb0/express-tsx-views/commit/d7a279d2916b78ea03cd1d0698219c75ac533571))
+
 ## [1.4.10](https://github.com/pmb0/express-tsx-views/compare/v1.4.9...v1.4.10) (2022-12-19)
 
 
