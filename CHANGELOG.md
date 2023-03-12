@@ -1,3 +1,10 @@
+## [1.4.14](https://github.com/pmb0/express-tsx-views/compare/v1.4.13...v1.4.14) (2023-03-12)
+
+
+### Bug Fixes
+
+* upgrade deps ([e2de905](https://github.com/pmb0/express-tsx-views/commit/e2de905e7d1d976279dcd939c5535237dd655051))
+
 ## [1.4.13](https://github.com/pmb0/express-tsx-views/compare/v1.4.12...v1.4.13) (2023-02-08)
 
 
