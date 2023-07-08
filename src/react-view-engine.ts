@@ -15,7 +15,7 @@ import {
 } from './react-view-engine.interface.js'
 
 export function isTranspiled(): boolean {
-  return dirname.endsWith('.js') ?? true
+  return dirname.endsWith('dist/') ?? true
 }
 
 export function setupReactViews(
