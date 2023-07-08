@@ -1,6 +1,6 @@
 import React, { Context } from 'react'
-import { TsxRenderContext } from '../tsx-render-context'
-import { TsxRenderMiddleware } from './tsx-render.middleware'
+import { TsxRenderContext } from '../tsx-render-context.js'
+import { TsxRenderMiddleware } from './tsx-render.middleware.js'
 
 export class CreateReactContextRenderMiddleware<
   T = unknown,

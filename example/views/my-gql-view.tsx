@@ -1,7 +1,8 @@
-import { gql, useQuery } from '@apollo/client'
+import { gql } from '@apollo/client/core/index.js'
+import { useQuery } from '@apollo/client/react/hooks/index.js'
 import React, { ReactElement } from 'react'
-import MyComponent from './my-component'
-import { MyLayout } from './my-layout'
+import MyComponent from './my-component.js'
+import { MyLayout } from './my-layout.js'
 
 export interface Film {
   id: string
@@ -46,6 +47,8 @@ export default function MyView(props: Props): ReactElement {
       <MyComponent myProp="foo"></MyComponent>
 
       <h2>Films:</h2>
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+      {/* @ts-ignore */}
       {data?.allFilms.films.map((film) => (
         <ul key={film.id}>
           {film.title} ({new Date(film.releaseDate).getFullYear()})

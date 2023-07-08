@@ -1,16 +1,19 @@
 /* eslint-disable toplevel/no-toplevel-side-effect */
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
+import { InMemoryCache } from '@apollo/client/cache/index.js'
+import { ApolloClient } from '@apollo/client/core/index.js'
+import { createHttpLink } from '@apollo/client/link/http/index.js'
 import { fetch } from 'cross-fetch'
 import express, { NextFunction, Request, Response } from 'express'
 import { resolve } from 'path'
+import { ApolloRenderMiddleware } from '../src/apollo.js'
+import { dirname } from '../src/import-meta-url.js'
 import {
-  addReactContext,
   PrettifyRenderMiddleware,
+  addReactContext,
   setupReactViews,
-} from '../src'
-import { ApolloRenderMiddleware } from '../src/apollo'
-import { MyContext, MyContext2 } from './my-context'
-import { Props } from './views/my-view'
+} from '../src/index.js'
+import { MyContext, MyContext2 } from './my-context.js'
+import { Props } from './views/my-view.js'
 
 export const app = express()
 
@@ -24,13 +27,13 @@ const apollo = new ApolloClient({
 })
 
 setupReactViews(app, {
-  viewsDirectory: resolve(__dirname, 'views'),
+  viewsDirectory: resolve(dirname, 'views'),
   middlewares: [
     new ApolloRenderMiddleware(apollo),
     new PrettifyRenderMiddleware(),
   ],
   transform: async (html) => {
-    // eslint-disable-next-line no-magic-numbers
+    // eslint-disable-next-line no-magic-numbers, @typescript-eslint/no-magic-numbers
     await new Promise((resolve) => setTimeout(resolve, 100))
     return html.replace('<!-- CSS -->', 'h1{color:red}')
   },

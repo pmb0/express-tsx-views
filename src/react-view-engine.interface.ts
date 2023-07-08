@@ -1,6 +1,6 @@
 import { Application } from 'express'
 import { Context } from 'react'
-import { TsxRenderMiddleware } from './handler'
+import { TsxRenderMiddleware } from './handler/index.js'
 
 export interface ReactViewsOptions {
   /**
@@ -34,6 +34,7 @@ export interface ReactViewsOptions {
 }
 
 export type EngineCallbackParameters = Parameters<
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   Parameters<Application['engine']>[1]
 >
 

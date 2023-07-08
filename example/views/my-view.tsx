@@ -1,8 +1,8 @@
 import React, { ReactElement, useContext } from 'react'
-import { MyContext, MyContext2 } from '../my-context'
-import { Dumper } from './dumper.component'
-import MyComponent from './my-component'
-import { MyLayout } from './my-layout'
+import { MyContext, MyContext2 } from '../my-context.js'
+import { Dumper } from './dumper.component.js'
+import MyComponent from './my-component.js'
+import { MyLayout } from './my-layout.js'
 
 export interface Props {
   title: string

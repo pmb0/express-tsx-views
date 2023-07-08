@@ -1,7 +1,7 @@
 import { AddressInfo } from 'net'
-import { app } from '../app'
+import { app } from '../app.js'
 
-// eslint-disable-next-line no-magic-numbers
+// eslint-disable-next-line no-magic-numbers, @typescript-eslint/no-magic-numbers
 const server = app.listen(8080, function () {
   const { address, port } = server.address() as AddressInfo
   // eslint-disable-next-line no-console

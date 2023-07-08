@@ -1,8 +1,9 @@
-import { ApolloClient, ApolloProvider } from '@apollo/client'
-import { getMarkupFromTree } from '@apollo/client/react/ssr'
+import { ApolloClient } from '@apollo/client/core/index.js'
+import { ApolloProvider } from '@apollo/client/react/index.js'
+import { getMarkupFromTree } from '@apollo/client/react/ssr/index.js'
 import React from 'react'
-import { TsxRenderContext } from '../tsx-render-context'
-import { TsxRenderMiddleware } from './tsx-render.middleware'
+import { TsxRenderContext } from '../tsx-render-context.js'
+import { TsxRenderMiddleware } from './tsx-render.middleware.js'
 
 export class ApolloRenderMiddleware<T = unknown> extends TsxRenderMiddleware {
   #apollo: ApolloClient<T>

@@ -4,17 +4,18 @@ import {
   CreateReactContextRenderMiddleware,
   DefaultTsxRenderMiddleware,
   TsxRenderContext,
-} from './handler'
-import { PrettifyRenderMiddleware } from './handler/middleware/prettify-render.middleware'
+} from './handler/index.js'
+import { PrettifyRenderMiddleware } from './handler/middleware/prettify-render.middleware.js'
+import { dirname } from './import-meta-url.js'
 import {
   EngineCallbackParameters,
   ExpressRenderOptions,
   ReactViewsContext,
   ReactViewsOptions,
-} from './react-view-engine.interface'
+} from './react-view-engine.interface.js'
 
 export function isTranspiled(): boolean {
-  return require.main?.filename?.endsWith('.js') ?? true
+  return dirname.endsWith('.js') ?? true
 }
 
 export function setupReactViews(
