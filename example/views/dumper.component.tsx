@@ -10,6 +10,7 @@ export function Dumper({ caption, data }: DumperProps): ReactElement {
   return (
     <figure>
       {caption && <figcaption>{caption}:</figcaption>}
+      {/* eslint-disable-next-line @typescript-eslint/no-magic-numbers */}
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </figure>
   )

@@ -1,6 +1,6 @@
 import express, { Express } from 'express'
 import { resolve } from 'path'
-import { reactViews, setupReactViews } from './react-view-engine'
+import { reactViews, setupReactViews } from './react-view-engine.js'
 
 describe('react-view-engine', () => {
   let app: Express

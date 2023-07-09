@@ -1,3 +1,5 @@
 dist
 coverage
 *.js
+.eslintrc.cjs
+est.config.ts

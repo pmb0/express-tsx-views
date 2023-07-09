@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/server'
-import { TsxRenderContext } from '../tsx-render-context'
-import { TsxRenderMiddleware } from './tsx-render.middleware'
+import { TsxRenderContext } from '../tsx-render-context.js'
+import { TsxRenderMiddleware } from './tsx-render.middleware.js'
 
 /**
  * All Concrete Handlers either handle a request or pass it to the next handler

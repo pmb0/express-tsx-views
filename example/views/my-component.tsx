@@ -1,5 +1,5 @@
 import React, { Component, ReactElement } from 'react'
-import { Dumper } from './dumper.component'
+import { Dumper } from './dumper.component.js'
 
 export interface Properties {
   myProp: string

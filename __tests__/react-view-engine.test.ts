@@ -1,7 +1,11 @@
 import { resolve } from 'path'
 import request from 'supertest'
-import { app } from '../example/app'
-import { setupReactViews } from '../src'
+import { app } from '../example/app.js'
+import { setupReactViews } from '../src/index.js'
+
+jest.mock('../src/import-meta-url.js', () => ({
+  dirname: jest.fn(),
+}))
 
 describe('react-view-engine', () => {
   test('Rendering', async () => {

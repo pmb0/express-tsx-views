@@ -1,4 +1,4 @@
-import { TsxRenderContext } from '../tsx-render-context'
+import { TsxRenderContext } from '../tsx-render-context.js'
 
 /**
  * The default chaining behavior can be implemented inside a base handler class.

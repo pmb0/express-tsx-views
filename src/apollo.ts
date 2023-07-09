@@ -1,1 +1,1 @@
-export * from './handler/middleware/apollo-render.middleware'
+export * from './handler/middleware/apollo-render.middleware.js';
