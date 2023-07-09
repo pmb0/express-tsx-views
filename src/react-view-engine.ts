@@ -6,7 +6,6 @@ import {
   TsxRenderContext,
 } from './handler/index.js'
 import { PrettifyRenderMiddleware } from './handler/middleware/prettify-render.middleware.js'
-import { dirname } from './import-meta-url.js'
 import {
   EngineCallbackParameters,
   ExpressRenderOptions,
@@ -15,7 +14,7 @@ import {
 } from './react-view-engine.interface.js'
 
 export function isTranspiled(): boolean {
-  return dirname.endsWith('dist/') ?? true
+  return process.argv[1].endsWith('.js')
 }
 
 export function setupReactViews(
